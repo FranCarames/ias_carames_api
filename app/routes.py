@@ -22,10 +22,14 @@ def get_users():
 def create_user():
     """Crear un nuevo usuario"""
     data = request.get_json()
-    if not data or not data.get('name') or not data.get('email'):
-        return jsonify({"error": "Faltan datos: name y email son requeridos"}), 400
-    
-    user = User(name=data['name'], email=data['email'])
+    if not data or not data.get('first_name') or not data.get('last_name') or not data.get('email'):
+        return jsonify({"error": "Faltan datos: first_name, last_name y email son requeridos"}), 400
+
+    user = User(
+        first_name=data['first_name'],
+        last_name=data['last_name'],
+        email=data['email']
+    )
     db.session.add(user)
     db.session.commit()
     
