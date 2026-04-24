@@ -12,10 +12,19 @@ class Config:
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
+    # Opciones de conexión para psycopg3
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        'pool_pre_ping': True,
+    }
+    
     @staticmethod
     def get_db_url():
-        """Convierte postgres:// a postgresql:// si es necesario (Render usa postgres://)"""
+        # """Convierte postgres:// a postgresql+psycopg:// para usar psycopg3"""
         url = os.getenv('DATABASE_URL')
-        if url and url.startswith('postgres://'):
-            url = url.replace('postgres://', 'postgresql://', 1)
+        # if url:
+        #     # Reemplazar el driver para usar psycopg3
+        #     if url.startswith('postgres://'):
+        #         url = url.replace('postgres://', 'postgresql+psycopg://', 1)
+        #     elif url.startswith('postgresql://'):
+        #         url = url.replace('postgresql://', 'postgresql+psycopg://', 1)
         return url
