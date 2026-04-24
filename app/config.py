@@ -21,10 +21,10 @@ class Config:
     def get_db_url():
         # """Convierte postgres:// a postgresql+psycopg:// para usar psycopg3"""
         url = os.getenv('DATABASE_URL')
-        # if url:
-        #     # Reemplazar el driver para usar psycopg3
-        #     if url.startswith('postgres://'):
-        #         url = url.replace('postgres://', 'postgresql+psycopg://', 1)
-        #     elif url.startswith('postgresql://'):
-        #         url = url.replace('postgresql://', 'postgresql+psycopg://', 1)
+        if url:
+            # Reemplazar el driver para usar psycopg3
+            if url.startswith('postgres://'):
+                url = url.replace('postgres://', 'postgresql+psycopg://', 1)
+            elif url.startswith('postgresql://'):
+                url = url.replace('postgresql://', 'postgresql+psycopg://', 1)
         return url
