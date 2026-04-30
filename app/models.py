@@ -16,5 +16,6 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
+            "password": self.password,
             "birthdate": self.birthdate.isoformat() if self.birthdate else None
         }
